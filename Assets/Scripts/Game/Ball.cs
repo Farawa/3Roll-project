@@ -23,6 +23,8 @@ public class Ball : MonoBehaviour
 
     public async void Move()
     {
+        if (!isMoving)
+            await System.Threading.Tasks.Task.Delay(20);
         var bottomPos = position + new Vector2Int(0, 1);
         var bottomBall = BallsContainer.instance.GetBall(bottomPos);
         bool isCanMove = true;
@@ -56,10 +58,7 @@ public class Ball : MonoBehaviour
             else if (topPos.y == -1)
             {
                 //await System.Threading.Tasks.Task.Delay(50);
-                var newBall = BallsContainer.instance.GetBall();
-                newBall.position = topPos;
-                newBall.UpdateWorldPosition();
-                newBall.Move();
+                BallsContainer.instance.SpawnNewBall(topPos);
             }
         }
         else

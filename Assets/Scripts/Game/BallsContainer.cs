@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,6 +40,24 @@ public class BallsContainer : MonoBehaviour
         return newBall;
     }
 
+    public void SpawnNewBall(Vector2Int position)
+    {
+        var newBall = BallsContainer.instance.GetBall();
+        newBall.position = position;
+        newBall.UpdateWorldPosition();
+        newBall.Move();
+    }
+
+    public bool IsAnyBallMoving()
+    {
+        foreach(var ball in balls)
+        {
+            if (ball.isMoving)
+                return true;
+        }
+        return false;
+    }
+
     public Ball GetBall(Vector2Int position)
     {
         foreach (var ball in balls)
@@ -58,6 +77,17 @@ public class BallsContainer : MonoBehaviour
 
         ball.position = -Vector2Int.one;
         ball.transform.position = Vector2.one * 99999;
-
+        ball.transform.DOKill();
+        var topPosition = position + Vector2Int.down;
+        var topBall = GetBall(topPosition);
+        if (topBall)
+        {
+            if (!topBall.isMoving)
+                topBall.Move();
+        }
+        else if (topPosition.y == -1)
+        {
+            SpawnNewBall(topPosition);
+        }
     }
 }

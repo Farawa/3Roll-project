@@ -57,11 +57,15 @@ public class Field : MonoBehaviour
             for (int j = 0; j < fieldSize.y; j++)
             {
                 var cell = Instantiate(cellPrefab, transform).GetComponent<Cell>();
-                field.Add(new Vector2Int(i, j), cell);
+                var cellPosition = new Vector2Int(i, j);
+                cell.position = cellPosition;
+                field.Add(cellPosition, cell);
                 cell.transform.localPosition = startPosition + new Vector3(i * spacing.x + i * cellSize.x, -1 * (j * spacing.y + j * cellSize.y), 0);
             }
             //spawner cells
             var spawnerCell = Instantiate(cellPrefab, transform).GetComponent<Cell>();
+            var spawnerCellPosition = new Vector2Int(i, -1);
+            spawnerCell.position = spawnerCellPosition;
             field.Add(new Vector2Int(i, -1), spawnerCell);
             spawnerCell.transform.localPosition = startPosition + new Vector3(i * spacing.x + i * cellSize.x, -1 * (-1 * spacing.y + -1 * cellSize.y), 0);
         }

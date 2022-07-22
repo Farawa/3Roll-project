@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class SceneButton : MonoBehaviour
 {
     [SerializeField] private SceneType sceneType;
-
+    [SerializeField] private Button button;
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(OnClick);
+        if (!button)
+            button = GetComponent<Button>();
+        button.onClick.AddListener(OnClick);
     }
 
     private void OnClick()

@@ -14,9 +14,17 @@ public class BallDestroyer : MonoBehaviour
 
     public void DestroyBalls(List<Ball> balls, BallsComboType comboType)
     {
+        var ballsCount = balls.Count;
         foreach(var ball in balls)
         {
             BallsContainer.instance.CleanBall(ball.position);
         }
+        GameController.instance.AddPoints(comboType,ballsCount);
+    }
+
+    public void DestroyBall(Ball ball)
+    {
+        BallsContainer.instance.CleanBall(ball.position);
+        GameController.instance.AddPoints(BallsComboType.solo,1);
     }
 }
