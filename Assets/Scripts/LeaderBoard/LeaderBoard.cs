@@ -11,13 +11,18 @@ public static class LeaderBoard
     {
         get
         {
-            return PlayerPrefs.GetInt("LastLeader", 0);
+            return PlayerPrefs.GetInt("LastLeader", -1);
         }
         private set
         {
             PlayerPrefs.SetInt("LastLeader", value);
             PlayerPrefs.Save();
         }
+    }
+
+    public static void CleanLeader()
+    {
+        LastLeader = -1;
     }
 
     public static bool UpdateLeader(int points)

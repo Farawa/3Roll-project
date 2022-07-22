@@ -15,6 +15,7 @@ public class LeaderBoardFiller : MonoBehaviour
             LeaderBoard.UpdateLeader(100);
             LeaderBoard.UpdateLeader(75);
             LeaderBoard.UpdateLeader(50);
+            LeaderBoard.CleanLeader();
         }
     }
 }
