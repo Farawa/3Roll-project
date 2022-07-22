@@ -85,5 +85,9 @@ public class Ball : MonoBehaviour
             image.color = UnityEngine.Color.white;
         else if (color == BallColor.yellow)
             image.color = UnityEngine.Color.yellow;
+        else if (color == BallColor.black)
+            image.color = UnityEngine.Color.black;
+        else if (color == BallColor.gray)
+            image.color = UnityEngine.Color.grey;
     }
 }

@@ -7,5 +7,7 @@ public enum BallColor
     green,
     blue,
     yellow,
-    white
+    white,
+    black,
+    gray
 }

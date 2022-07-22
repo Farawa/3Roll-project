@@ -24,7 +24,7 @@ public class BallsContainer : MonoBehaviour
 
     public Ball GetBall()
     {
-        var randomColor = (BallColor)Random.Range(0, 5);
+        var randomColor = (BallColor)Random.Range(0, 7);
         foreach (var ball in balls)
         {
             if (ball.position == -Vector2Int.one)
